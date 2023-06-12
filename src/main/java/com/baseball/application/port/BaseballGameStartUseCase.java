@@ -4,5 +4,5 @@ import com.baseball.dto.BaseballGameStartResponse;
 
 public interface BaseballGameStartUseCase {
 
-    BaseballGameStartResponse execute();
+    BaseballGameStartResponse executeStart();
 }

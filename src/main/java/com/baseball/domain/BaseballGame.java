@@ -1,5 +1,7 @@
 package com.baseball.domain;
 
+import com.baseball.common.error.exception.BaseballGameAlreadyClosedException;
+import com.baseball.domain.data.GuessResult;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -26,6 +26,7 @@ public class BaseballGame {
     @JoinColumn(name =  "answer_id")
     private Answer answer;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     private Instant createdAt;
@@ -40,16 +41,18 @@ public class BaseballGame {
         this.updatedAt = updatedAt == null ? Instant.now() : updatedAt;
     }
 
-//    public GuessResult guess(int guessNumber) {
-//        if (this.status == Status.CLOSED) throw new BaseballGameAlreadyClosedException();
-//        GuessResult result = this.answer.guess(guessNumber);
-//
-//        if (!this.answer.canGuess() || result.isCorrect()) {
-//            this.status = Status.CLOSED;
-//        }
-//
-//        return result;
-//    }
+    public GuessResult guess(int guessNumber) {
+        if (this.status == Status.CLOSED) {
+            throw new BaseballGameAlreadyClosedException();
+        }
+        GuessResult result = this.answer.guess(guessNumber);
+
+        if (!this.answer.canGuess() || result.isCorrect()) {
+            this.status = Status.CLOSED;
+        }
+
+        return result;
+    }
 
     public enum Status {
         IN_PROGRESS,

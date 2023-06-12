@@ -1,5 +1,7 @@
 package com.baseball.domain;
 
+import com.baseball.common.error.exception.IllegalAnswerArgumentException;
+import com.baseball.common.error.exception.IllegalAnswerStateException;
 import com.baseball.domain.data.GuessResult;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -23,7 +25,9 @@ public class Answer {
     private Long id;
 
     private int answer;
+
     private int answerCount;
+
     private int maxAnswerCount;
 
     @OneToOne(mappedBy = "answer", fetch = FetchType.LAZY)
@@ -41,7 +45,7 @@ public class Answer {
 
     public GuessResult guess(int guessNumber) {
         if (!this.canGuess()) {
-//            throw new IllegalAnswerStateException();
+            throw new IllegalAnswerStateException();
         }
 
         this.answerCount++;
@@ -70,18 +74,6 @@ public class Answer {
         return this.maxAnswerCount > this.answerCount;
     }
 
-    public int getAnswer() {
-        return answer;
-    }
-
-    public int getAnswerCount() {
-        return answerCount;
-    }
-
-    public int getMaxAnswerCount() {
-        return maxAnswerCount;
-    }
-
     public static Answer create(int answerNumber, int maxAnswerCount) {
         validateAnswer(answerNumber);
         return new Answer(answerNumber, maxAnswerCount);
@@ -94,7 +86,7 @@ public class Answer {
             answerNumber = answerNumber / 10;
         }
         if (new HashSet<>(stack).size() != 3) {
-//            throw new IllegalAnswerArgumentException();
+            throw new IllegalAnswerArgumentException();
         }
     }
 }

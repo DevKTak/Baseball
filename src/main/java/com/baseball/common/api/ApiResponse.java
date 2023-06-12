@@ -1,4 +1,6 @@
-package com.baseball.common;
+package com.baseball.common.api;
+
+import com.baseball.common.error.api.Error;
 
 import java.util.Collections;
 import java.util.Map;

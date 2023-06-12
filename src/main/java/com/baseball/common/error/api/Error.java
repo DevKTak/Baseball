@@ -1,9 +1,13 @@
-package com.baseball.common;
+package com.baseball.common.error.api;
+
+import lombok.Getter;
 
 import java.util.Collections;
 import java.util.Map;
 
+@Getter
 public class Error {
+
     private final String code;
     private final String message;
     private final Map<String, Object> properties;
@@ -12,18 +16,6 @@ public class Error {
         this.code = code;
         this.message = message;
         this.properties = properties == null ? Collections.emptyMap() : properties;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public Map<String, Object> getProperties() {
-        return properties;
     }
 }
 

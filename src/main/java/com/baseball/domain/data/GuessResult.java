@@ -1,5 +1,8 @@
 package com.baseball.domain.data;
 
+import lombok.Getter;
+
+@Getter
 public class GuessResult {
 
     private final int strike;
@@ -10,18 +13,6 @@ public class GuessResult {
         this.strike = strike;
         this.ball = ball;
         this.out = 3 - (strike + ball);
-    }
-
-    public int getStrike() {
-        return strike;
-    }
-
-    public int getBall() {
-        return ball;
-    }
-
-    public int getOut() {
-        return out;
     }
 
     public boolean isCorrect() {
