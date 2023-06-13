@@ -4,5 +4,5 @@ import com.baseball.dto.BaseballGameResultResponse;
 
 public interface BaseballGameResultQuery {
 
-    BaseballGameResultResponse findByRoomId(Long roomId);
+    BaseballGameResultResponse findGameByRoomId(Long roomId);
 }
