@@ -40,3 +40,22 @@ jobs:
           JASYPT_PASSWORD: ${{ secrets.JASYPT_PASSWORD }}
    # - name: Build with Gradle
    #   run: ./gradlew clean build --refresh-dependencies -Pspring.profiles.active=dev
+
+    # CI 서버 환경에 캐싱된 gradle dependency을 복구하는 step
+    - name: Cache Depedency Library
+      uses: actions/cache@v3.2.6
+      with:
+        path: |  # 캐싱할 데이터들의 경로
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+          
+        # key를 통해 캐싱서버로부터 파일을 복구
+        # gradle 파일들을 해싱한 값을 키로 활용
+        # gradle 파일에 변화가 생긴다면 해시가 바뀌어 새로운 key로 새롭게 캐시
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+    
+    # Gradle clean build를 수행하는 step
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      with:
+        arguments: clean build
