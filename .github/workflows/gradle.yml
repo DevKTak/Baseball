@@ -34,6 +34,8 @@ jobs:
         arguments: build
     # yml Secret Key
     - name: Set up environment variables
+      run: |
+          echo "JASYPT_PASSWORD=$JASYPT_PASSWORD" >> .env
       env:
           JASYPT_PASSWORD: ${{ secrets.JASYPT_PASSWORD }}
    # - name: Build with Gradle
