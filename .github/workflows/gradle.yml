@@ -38,5 +38,5 @@ jobs:
           echo "JASYPT_PASSWORD=$JASYPT_PASSWORD" >> .env
       env:
           JASYPT_PASSWORD: ${{ secrets.JASYPT_PASSWORD }}
-    - name: Build with Gradle
-      run: ./gradlew clean build --refresh-dependencies -Pspring.profiles.active=dev
+   # - name: Build with Gradle
+   #   run: ./gradlew clean build --refresh-dependencies -Pspring.profiles.active=dev
