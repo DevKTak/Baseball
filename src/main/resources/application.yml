@@ -4,4 +4,4 @@ baseball:
 spring:
   profiles:
     include:
-      - dev
+      - prod
