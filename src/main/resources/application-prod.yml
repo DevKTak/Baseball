@@ -16,5 +16,3 @@ spring:
         use_sql_comments: true
         dialect: org.hibernate.dialect.MariaDBDialect
 
-baseball:
-  maxAnswerCount: 10
