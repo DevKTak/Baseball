@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ENC(uwAD+ze5BriXjxYbPqKxqugnHpTv4S892LcnAFgl9XRRpCaHMkjJK2FBZqwklkCXoX9eJ0LaTKmXEzrouQFF2EXqUG/CdSGCJIdpnQPzt3XCR/tSfcVCQI5O891b1Oudsx+dhNap7zGX5AyiGjkvuTxNxSWTAxM8shWFJHUrR+Y=)
-    username: ENC(1B2TwIHH5eR2PZ/p7Q87qw==)
-    password: ENC(Vb+2F6gupIvEzGG70jPcZ+YYbs88FOOR)
+    url: jdbc:mariadb://127.0.0.1:3306/hotel-java?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: devktak
+    password: password
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
