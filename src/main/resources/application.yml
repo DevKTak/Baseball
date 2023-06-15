@@ -1,7 +1,7 @@
 baseball:
   maxAnswerCount: 10
 
-#spring:
-#  profiles:
-#    include:
-#      - prod
+spring:
+  profiles:
+    include:
+      - dev
